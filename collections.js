@@ -22,11 +22,6 @@ document.getElementById("side-navbar-close").addEventListener("click",()=>{
 })
 
 
-    
-   
-
-
-
 var container=document.querySelector(".products")
 products.forEach((product)=>{
     var createItem = document.createElement("div")

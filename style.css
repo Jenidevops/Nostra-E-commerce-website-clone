@@ -46,10 +46,17 @@ body {
 /* Marquee content */
 .marquee-content {
   display: inline-flex;
+  animation: scroll;
   gap: clamp(20px, 5vw, 100px); /* responsive gap */
   animation: scroll 15s linear infinite;
 }
-
+/* Duplicate content for seamless looping */
+.marquee-content::after {
+  content: attr(data-text); /* pull the same text again */
+  display: inline-flex;
+  gap: clamp(20px, 5vw, 100px);
+  padding-left: 50px; /* spacing between loops */
+}
 /* Pause on hover */
 .marquee:hover .marquee-content {
   animation-play-state: paused;
@@ -64,8 +71,9 @@ body {
 /* Pulse animation for offer text */
 .pulse-offer {
   display: inline-block;
-  animation: pulse 1.2s infinite;
-  margin-left: 5px;
+  animation: pulse 2.2s infinite;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 @keyframes pulse {
@@ -83,9 +91,28 @@ body {
 }
 
   /* Responsive: faster scroll on small screens */
-  @media (max-width: 1200px) { .marquee-content { animation-duration: 20s; } }
-  @media (max-width: 800px)  { .marquee-content { animation-duration: 15s; } }
-  @media (max-width: 600px)  { .marquee-content { animation-duration: 12s; } }
+
+  @media (max-width: 600px) {
+    .marquee-content {
+      animation-duration: 30s;
+    }
+  }
+  @media (min-width: 601px) and (max-width: 900px) {
+    .marquee-content {
+      animation-duration: 30s;
+    }
+  }
+  @media (min-width: 901px) and (max-width: 1200px) {
+    .marquee-content {
+      animation-duration: 60s;
+    }
+  }
+  @media (min-width: 1201px) {
+    .marquee-content {
+      animation-duration: 80s;
+    }
+  }
+  
 
   .container {
     padding-left: 15px;
@@ -96,7 +123,7 @@ body {
 .navbar {
   position: sticky; /* or fixed if you want it always on top */
   top: 0;           /* stick to the top of viewport */
-  z-index: 100;     /* ensure it stays above page content but below offer bar */
+  z-index: 10;     /* ensure it stays above page content but below offer bar */
   background: #fff;
   display: flex;
   justify-content: space-between;
@@ -195,7 +222,7 @@ body {
     color: #E2E1E1;
     margin-left: -60%;
     transition-duration: 1s;
-    z-index: 10;
+    z-index: 100;
     padding: 20px;
   
 }
@@ -557,22 +584,8 @@ body {
     font-size: 1.2vw;
     color: #1D232C;
     border-radius: 10px;
- 
     border: none;
-    
-    
-
- }
-
- /* Scroll Animate */
-
- .initial-scroll-animate{
-   
-    transition: 3s;
- }
-
- .reveal-scroll-animate{
-    opacity: 0;
+  
  }
 
  .news{
@@ -606,8 +619,6 @@ body {
     border: none;
     padding:10px
     
-    
-
  }
 
 
